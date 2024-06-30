@@ -23,6 +23,8 @@ async function bootstrap() {
     }),
   );
 
+  await app.listen();
+
   logger.log(`Products Microservice running on port ${envs.port}`);
 }
 bootstrap();
