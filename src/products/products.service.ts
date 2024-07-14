@@ -76,4 +76,22 @@ export class ProductsService extends PrismaClient implements OnModuleInit {
       data: { deletedAt: new Date() },
     });
   }
+
+  async validateProducts(ids: number[]) {
+    const products = await this.product.findMany({
+      where: {
+        id: {
+          in: ids,
+        },
+      },
+    });
+
+    if (products.length !== ids.length)
+      throw new RpcException({
+        message: 'Invalid product IDs',
+        status: HttpStatus.BAD_REQUEST,
+      });
+
+    return products;
+  }
 }
