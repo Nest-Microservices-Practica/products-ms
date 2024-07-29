@@ -9,6 +9,6 @@ RUN yarn install
 
 COPY . .
 
-RUN yarn prisma generate
+RUN npx prisma generate
 
-EXPOSE 3000
+EXPOSE 3001
